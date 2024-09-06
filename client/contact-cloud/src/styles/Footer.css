@@ -1,0 +1,41 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #222;
+  color: #fff;
+  font-size: 14px;
+}
+
+.footer-copyright {
+  margin: 0;
+}
+
+.footer-social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-icon-link {
+  color: #fff;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.footer-icon-link:hover {
+  color: #1da1f2; /* Change color on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-social-icons {
+    margin-top: 10px;
+  }
+}
