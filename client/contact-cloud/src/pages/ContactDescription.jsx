@@ -29,7 +29,7 @@ const ContactDescription = () => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3400/contacts/${id}`, {
+      const res = await fetch(`${BASE_API}/contacts/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
