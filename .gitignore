@@ -12,7 +12,6 @@ dist
 dist-ssr
 *.local
 .env
-*utils
 
 
 # Editor directories and files
