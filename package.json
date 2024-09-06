@@ -1,0 +1,24 @@
+{
+  "name": "contactcloud-mern",
+  "version": "1.0.0",
+  "description": "ContactCloud is full-stack application that allows users to manage their contacts. Users can create, view, edit, and delete contacts, each of which is associated with a specific user.",
+  "main": "app.js",
+  "scripts": {
+    "install-server": "cd server && npm install",
+    "start-server": "cd server && node app.js",
+    "install-client": "cd client/contact-cloud && npm install",
+    "build-client": "cd client/contact-cloud && npm run build",
+    "start-client": "cd client/contact-cloud && npm run start"
+  },
+  "keywords": [
+    "CRUD",
+    "MERN",
+    "React",
+    "Node",
+    "Express",
+    "Authentication",
+    "Authorization"
+  ],
+  "author": "Pratik Singh",
+  "license": "ISC"
+}
