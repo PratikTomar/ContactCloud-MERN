@@ -4,18 +4,7 @@ import CallButton from "./CallButton";
 import "../styles/Card.css";
 
 const ContactCard = ({ data }) => {
-  const {
-    _id,
-    name,
-    gender,
-    number1,
-    number2,
-    org,
-    email,
-    city,
-    createdAt,
-    updatedAt,
-  } = data;
+  const { _id, name, gender, number1, number2 } = data;
 
   return (
     <>
@@ -41,26 +30,11 @@ const ContactCard = ({ data }) => {
               </span>
             )}
           </div>
-          {/* <span className="card-content">{number1}</span>
-          <CallButton number={number1} />
-          <span className="card-content"> {number2}</span>
-          {number2 && <CallButton number={number2} />} */}
 
-          <Link
-            to={`/contact/description/${_id}`}
-            // state: { contact: data },
-            state={{ contact: data }}
-          >
+          <Link to={`/contact/description/${_id}`}>
             <button className="card-button">View More</button>
           </Link>
-          <Link
-            to={`/editcontact/${_id}`}
-            // to={{
-            //   pathname: `/editcontact/${_id}`,
-            //   // state: { contact: data },
-            // }}
-            state={{ contact: data }}
-          >
+          <Link>
             <button className="card-button">Edit Contact</button>
           </Link>
         </div>
