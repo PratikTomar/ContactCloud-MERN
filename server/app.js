@@ -18,7 +18,6 @@ app.use(notFound);
 
 // Defining PORT
 const port = process.env.PORT || 3000;
-console.log(process.env.MONGODB_URI);
 mongoose.connect(process.env.MONGODB_URI || "", {});
 
 mongoose.connection.on("open", () => {
