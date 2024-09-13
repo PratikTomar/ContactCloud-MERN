@@ -5,6 +5,7 @@ import Layout from "../layout/Layout";
 import Search from "../components/Search";
 import Loader from "../components/Loader";
 import { BASE_API } from "../utils/constants";
+import Filter from "../components/filter";
 
 const DashBoard = () => {
   const token = localStorage.getItem("token");
@@ -42,12 +43,15 @@ const DashBoard = () => {
   return (
     <Layout>
       <Search data={data} setSearchList={setSearchList} />
-      <div className="card-container">
-        {searchList.length === 0 ? (
-          <p className="no-items-found">No items found from your search</p>
-        ) : (
-          searchList.map((list) => <ContactCard data={list} key={list._id} />)
-        )}
+      <div className="dashboard-container">
+        <Filter data={data} setSearchList={setSearchList} />
+        <div className="card-container">
+          {searchList.length === 0 ? (
+            <p className="no-items-found">No items found from your search</p>
+          ) : (
+            searchList.map((list) => <ContactCard data={list} key={list._id} />)
+          )}
+        </div>
       </div>
     </Layout>
   );

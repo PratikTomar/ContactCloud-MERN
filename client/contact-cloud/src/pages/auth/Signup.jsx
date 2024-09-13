@@ -7,6 +7,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import Loader from "../../components/Loader";
 import { BASE_API } from "../../utils/constants";
+import useValidation from "../../hooks/useValidation";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -17,6 +18,9 @@ const Signup = () => {
   });
 
   const { toggleHandler, isToggle } = useToggle();
+  const { emailError, passwordError, passwordValidation, emailValidation } =
+    useValidation();
+
   const { data, fetchData, isLoading } = useFetch(`${BASE_API}/signup`, {
     method: "POST",
     headers: {
@@ -40,11 +44,18 @@ const Signup = () => {
       ...signUpDetails,
       [name]: value,
     });
+    if (name === "email") {
+      emailValidation(value);
+    } else if (name === "password") {
+      passwordValidation(value);
+    }
   };
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    await fetchData();
+    if (!emailError && !passwordError) {
+      await fetchData();
+    }
   };
 
   useEffect(() => {
@@ -98,6 +109,7 @@ const Signup = () => {
                 required
               />
             </div>
+
             <div className="input-container">
               <label htmlFor="email">Email:</label>
               <input
@@ -110,6 +122,7 @@ const Signup = () => {
                 required
               />
             </div>
+            {emailError && <div className="error-content">{emailError}</div>}
             <div className="input-container">
               <label htmlFor="password">Password:</label>
               <input
@@ -125,6 +138,9 @@ const Signup = () => {
                 {isToggle ? <FaEye /> : <FaEyeSlash />}
               </span>
             </div>
+            {passwordError && (
+              <div className="error-content">{passwordError}</div>
+            )}
             <button type="submit" className="signup-button">
               Sign Up
             </button>

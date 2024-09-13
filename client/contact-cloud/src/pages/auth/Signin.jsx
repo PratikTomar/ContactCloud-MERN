@@ -8,6 +8,7 @@ import useToggle from "../../hooks/useToggle";
 import Loader from "../../components/Loader";
 import { toast } from "react-toastify";
 import { BASE_API } from "../../utils/constants";
+import useValidation from "../../hooks/useValidation";
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -23,6 +24,8 @@ const Signin = () => {
   });
 
   const { toggleHandler, isToggle } = useToggle();
+  const { emailError, passwordError, passwordValidation, emailValidation } =
+    useValidation();
 
   const resetForm = () => {
     setSignInDetails({
@@ -42,7 +45,9 @@ const Signin = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    await fetchData();
+    if (!emailError && !passwordError) {
+      await fetchData();
+    }
   };
 
   const formChangeHandler = (e) => {
@@ -51,6 +56,11 @@ const Signin = () => {
       ...signInDetails,
       [name]: value,
     });
+    if (name === "email") {
+      emailValidation(value);
+    } else if (name === "password") {
+      passwordValidation(value);
+    }
   };
 
   useEffect(() => {
@@ -109,6 +119,7 @@ const Signin = () => {
                 required
               ></input>
             </div>
+            {emailError && <div className="error-content">{emailError}</div>}
             <div className="input-container">
               <label htmlFor="password">Password:</label>
               <input
@@ -124,6 +135,9 @@ const Signin = () => {
                 {isToggle ? <FaEye /> : <FaEyeSlash />}
               </span>
             </div>
+            {passwordError && (
+              <div className="error-content">{passwordError}</div>
+            )}
             <button type="submit" className="login-button">
               Login
             </button>

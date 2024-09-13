@@ -24,10 +24,9 @@
 }
 
 .footer-icon-link:hover {
-  color: #1da1f2; /* Change color on hover */
+  color: #1da1f2;
 }
 
-/* Responsive Design */
 @media (max-width: 600px) {
   .footer {
     flex-direction: column;

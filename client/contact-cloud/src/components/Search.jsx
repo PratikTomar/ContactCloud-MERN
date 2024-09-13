@@ -21,7 +21,7 @@ const Search = ({ data, setSearchList }) => {
   };
 
   return (
-    <div>
+    <div className="search-container">
       <input
         placeholder="Search by number or name"
         type="text"
