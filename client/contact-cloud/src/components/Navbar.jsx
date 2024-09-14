@@ -33,7 +33,7 @@ const Navbar = () => {
         {isLoggedIn && (
           <>
             <strong>Hi, {name}</strong>
-            <Link to="/contact" className="nav-link">
+            <Link to="contact" className="nav-link">
               <li>Add Contact</li>
             </Link>
             <Link to="/dashboard" className="nav-link">

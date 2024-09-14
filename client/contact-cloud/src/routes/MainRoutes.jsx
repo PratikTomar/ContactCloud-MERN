@@ -1,6 +1,8 @@
 import React, { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import Loader from "../components/Loader.jsx";
+import AuthDashboard from "../pages/AuthDashboard.jsx";
+import ProtectedRoutes from "./ProtectedRoutes.jsx";
 
 const Home = lazy(() => import("../pages/Home"));
 const AddContact = lazy(() => import("../pages/AddContact.jsx"));
@@ -18,15 +20,24 @@ const MainRoutes = () => {
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/contact" element={<AddContact />}></Route>
-        <Route path="/editcontact/:id" element={<EditContact />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/signin" element={<Signin />}></Route>
-        <Route path="/dashboard" element={<DashBoard />}></Route>
         <Route
-          path="/contact/description/:id"
-          element={<ContactDescription />}
-        ></Route>
+          path="/dashboard"
+          element={
+            <ProtectedRoutes>
+              <AuthDashboard />
+            </ProtectedRoutes>
+          }
+        >
+          <Route path="" element={<DashBoard />} />
+          <Route path="contact" element={<AddContact />} />
+          <Route path="editcontact/:id" element={<EditContact />} />
+          <Route
+            path="contact/description/:id"
+            element={<ContactDescription />}
+          />
+        </Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </Suspense>

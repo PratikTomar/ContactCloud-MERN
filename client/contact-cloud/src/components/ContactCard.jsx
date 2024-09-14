@@ -31,10 +31,10 @@ const ContactCard = ({ data }) => {
             )}
           </div>
 
-          <Link to={`/contact/description/${_id}`}>
+          <Link to={`contact/description/${_id}`}>
             <button className="card-button">View More</button>
           </Link>
-          <Link to={`/editcontact/${_id}`} state={{ contact: data }}>
+          <Link to={`editcontact/${_id}`} state={{ contact: data }}>
             <button className="card-button">Edit Contact</button>
           </Link>
         </div>
